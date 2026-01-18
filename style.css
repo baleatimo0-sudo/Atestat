@@ -1,0 +1,466 @@
+/* ===== Reset ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #e9eef7;
+  line-height: 1.6;
+
+  /* FUNDAL CU IMAGINE */
+  background-image: url("../img/background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 12, 18, 0.85);
+  z-index: -1;
+}
+
+
+/* ===== Layout ===== */
+.container {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+}
+
+.section {
+  padding: 48px 0;
+}
+
+.section-title {
+  font-size: 28px;
+  margin-bottom: 14px;
+}
+
+.section-subtitle {
+  opacity: 0.85;
+  margin-bottom: 22px;
+}
+
+/* ===== Header / Nav ===== */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(10, 12, 18, 0.9);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(8px);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 700;
+}
+
+/* ===== Audi rings (4 cercuri) ===== */
+.rings{
+  display: inline-block;
+  position: relative;
+  width: 92px;
+  height: 24px;
+}
+
+.rings .ring{
+  position: absolute;
+  top: 0;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+}
+
+/* poziționare 4 inele */
+.rings .r1 { left: 0; }
+.rings .r2 { left: 24px; }
+.rings .r3 { left: 48px; }
+.rings .r4 { left: 72px; }
+
+
+
+.nav ul {
+  display: flex;
+  gap: 10px;
+  list-style: none;
+}
+
+.nav a {
+  color: #e9eef7;
+  text-decoration: none;
+  padding: 10px 12px;
+  border-radius: 10px;
+  opacity: 0.9;
+}
+
+.nav a:hover,
+.nav a.active {
+  background: rgba(255,255,255,0.08);
+  opacity: 1;
+}
+
+/* ===== Hero ===== */
+.hero {
+  padding: 64px 0 54px;
+  background:
+    radial-gradient(900px 300px at 10% 20%, rgba(255,255,255,0.12), transparent),
+    radial-gradient(900px 300px at 80% 10%, rgba(255,255,255,0.10), transparent),
+    linear-gradient(180deg, rgba(255,255,255,0.04), transparent);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 22px;
+}
+
+.hero h1 {
+  font-size: 40px;
+  line-height: 1.15;
+  margin-bottom: 14px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 8px 10px;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 999px;
+  font-size: 14px;
+  margin-bottom: 14px;
+}
+
+/* ===== Cards ===== */
+.card,
+.model-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.card h3,
+.model-card h4 {
+  margin-bottom: 8px;
+}
+
+/* ===== Buttons ===== */
+.btn-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 10px 14px;
+  border-radius: 12px;
+  text-decoration: none;
+  background: #e9eef7;
+  color: #0b0d12;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+}
+
+.btn.secondary {
+  background: transparent;
+  color: #e9eef7;
+  border: 1px solid rgba(255,255,255,0.18);
+}
+
+/* ===== Grids ===== */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+/* ===== Tags ===== */
+.tag {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.18);
+  font-size: 13px;
+  margin-right: 6px;
+  margin-bottom: 6px;
+}
+
+/* ===== Table ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+th, td {
+  padding: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+th {
+  background: rgba(255,255,255,0.06);
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* ===== Forms ===== */
+form {
+  display: grid;
+  gap: 12px;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 11px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(255,255,255,0.06);
+  color: #e9eef7;
+}
+
+textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+/* ===== Slider ===== */
+.slider {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+.slides {
+  display: flex;
+  transition: transform 400ms ease;
+}
+
+.slide {
+  min-width: 100%;
+}
+
+.slider img {
+  width: 100%;
+  height: 300px;
+  object-fit: contain;  
+  background-color: #000; 
+}
+
+
+.caption {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: rgba(0,0,0,0.5);
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #c81f1f;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+.dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+}
+
+.dot.active {
+  background: #bb0505;
+}
+
+/* ===== Footer ===== */
+footer {
+  padding: 22px 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  text-align: center;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .grid-2 { grid-template-columns: 1fr; }
+  .grid-3 { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 32px; }
+}
+
+
+/* ===== Logo Audi (imagine) ===== */
+.logo {
+  height: 80px;
+  width: auto;
+  margin-right: 10px;
+  display: block;
+
+
+}
+/* ===== Select (dropdown categorii) ===== */
+select {
+  background-color: #1a1d24;
+  color: #e9eef7;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 12px;
+}
+
+/* opțiunile din dropdown */
+select option {
+  background-color: #1a1d24;
+  color: #e9eef7;
+}
+
+/* opțiunea selectată / hover (unde e suportat) */
+select option:hover,
+select option:checked {
+  background-color: #2a2f3a;
+  color: #28c313;
+}
+/* ===== SLIDER CU FUNDAL BLURAT (GARANTAT) ===== */
+.slider { 
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+.slides {
+  display: flex;
+  transition: transform 400ms ease;
+}
+
+.slide {
+  position: relative;
+  min-width: 100%;
+  background: #000;
+  overflow: hidden;
+}
+
+/* fundal blurat (stratul 1) */
+.slide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--bg-img);
+  background-size: cover;
+  background-position: center;
+  filter: blur(26px);
+  transform: scale(1.25);
+  opacity: 0.85;
+  z-index: 0;
+}
+
+/* overlay întunecat peste blur (stratul 2) - ca să arate premium */
+.slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 1;
+}
+
+/* imaginea clară (stratul 3) */
+.img-wrap {
+  position: relative;
+  z-index: 2;            /* PESTE ::before și ::after */
+  width: 100%;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* IMPORTANT: și link-ul să fie peste blur */
+.img-wrap a {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* imaginea principală CLARĂ */
+.img-wrap img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+/* caption peste tot */
+.caption {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  z-index: 4;
+  background: rgba(0,0,0,0.55);
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+/* FIX: scoate orice efect de overlay/opacity/filter */
+.slider, .slider .slides, .slider .slide { opacity: 1 !important; }
+.slider img { opacity: 1 !important; filter: none !important; }
+
+.slider::before, .slider::after,
+.slider .slide::before, .slider .slide::after,
+.slider .slides::before, .slider .slides::after {
+  content: none !important;
+}
