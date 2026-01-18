@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Model Audi | Detalii</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- HEADER / MENIU -->
+  <header>
+    <div class="container nav">
+      <a class="brand" href="index.html">
+       <img src="img/logo.png" alt="Audi Logo" class="logo">
+
+        <span>AUDI • Gama completă</span>
+      </a>
+      <ul>
+        <li><a href="index.html">Acasă</a></li>
+        <li><a href="istorie.html">Istorie</a></li>
+        <li><a class="active" href="gama.html">Gama</a></li>
+        <li><a href="tehnologii.html">Tehnologii</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- CONȚINUT -->
+  <main class="section">
+    <div class="container">
+
+      <a class="btn secondary" href="gama.html">← Înapoi la Gama</a>
+
+      <h1 id="modelName" class="section-title" style="margin-top:14px;">
+        Model Audi
+      </h1>
+
+      <p id="modelDesc" class="section-subtitle">
+        Descriere model...
+      </p>
+
+      <div class="grid-2">
+
+        <!-- GALERIE -->
+        <div class="card">
+          <h3>Galerie foto</h3>
+
+          <div class="slider" data-autoplay="3000">
+            <div class="slides" id="slides">
+              <!-- imaginile sunt generate din JavaScript -->
+            </div>
+
+            <button class="nav-btn prev">‹</button>
+            <button class="nav-btn next">›</button>
+            <div class="dots"></div>
+          </div>
+
+          
+        </div>
+
+        <!-- INFORMAȚII -->
+        <div class="card">
+          <h3>Fișă tehnică (prezentare)</h3>
+
+          <table>
+            <tbody>
+              <tr>
+                <th>Familie</th>
+                <td id="modelFamily">-</td>
+              </tr>
+              <tr>
+                <th>Categorie</th>
+                <td id="modelCategory">-</td>
+              </tr>
+              <tr>
+                <th>Caroserie</th>
+                <td id="modelBody">-</td>
+              </tr>
+              <tr>
+                <th>Propulsie</th>
+                <td id="modelFuel">-</td>
+              </tr>
+              <tr>
+                <th>Tracțiune</th>
+                <td id="modelDrive">-</td>
+              </tr>
+              <tr>
+                <th>Avantaje</th>
+                <td id="modelHighlights">-</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p class="note" style="margin-top:10px;">
+            !!!!!!Datele sunt orientative!!!!!!
+          </p>
+        </div>
+
+      </div>
+
+      <div class="card" style="margin-top:14px;">
+        <h3>Observație</h3>
+        <p class="note">
+          Specificațiile pot varia în funcție de anul de fabricație și de piața de
+          distribuție. 
+        </p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>Proiect realizat pentru atestat • <span data-year></span></p>
+    </div>
+  </footer>
+
+  <!-- DATE MODELE -->
+  <script src="data/models.js"></script>
+
+  <!-- SCRIPT GENERAL -->
+  <script src="js/script.js"></script>
+
+  <!-- SCRIPT PENTRU MODEL -->
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+
+    const model = (window.AUDI_MODELS || []).find(m => m.id === id);
+
+    const setText = (id, value) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = value || "-";
+    };
+
+    if (!model) {
+      document.title = "Model inexistent | Audi";
+      setText("modelName", "Model inexistent");
+      setText("modelDesc", "Modelul solicitat nu există în baza de date.");
+    } else {
+      document.title = model.name + " | Detalii";
+
+      setText("modelName", model.name);
+      setText("modelDesc", model.desc);
+      setText("modelFamily", model.family);
+      setText("modelCategory", model.category);
+      setText("modelBody", model.body);
+      setText("modelFuel", model.fuel);
+      setText("modelDrive", model.drive);
+      setText("modelHighlights", (model.highlights || []).join(", "));
+
+      const slides = document.getElementById("slides");
+      const images = model.images && model.images.length
+        ? model.images
+        : [model.img, model.img];
+
+      slides.innerHTML = images.map(src => `
+        <div class="slide">
+          <img src="${src}" alt="${model.name}">
+          <div class="caption">${model.name}</div>
+        </div>
+      `).join("");
+
+      if (typeof initSliders === "function") initSliders();
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gama Audi | Atestat</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- HEADER / MENIU -->
+  <header>
+    <div class="container nav">
+ <a class="brand" href="index.html">
+  <img src="img/logo.png" alt="Audi Logo" class="logo">
+  <span>AUDI • Gama completă</span>
+</a>
+
+
+      <ul>
+        <li><a href="index.html">Acasă</a></li>
+        <li><a href="istorie.html">Istorie</a></li>
+        <li><a class="active" href="gama.html">Gama</a></li>
+        <li><a href="tehnologii.html">Tehnologii</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- CONȚINUT -->
+  <main class="section">
+    <div class="container">
+
+      <h1 class="section-title">Gama completă de autoturisme Audi</h1>
+      <p class="section-subtitle">
+        Modelele sunt generate automat din <strong>data/models.js</strong>.
+        Fiecare categorie are o galerie (slideshow) care include toate imaginile disponibile.
+      </p>
+
+      <!-- FILTRE -->
+      <div class="card" style="margin-bottom:14px;">
+        <h3>Căutare și filtrare</h3>
+
+        <div class="grid-2" style="align-items:end;">
+          <div>
+            <label class="note" for="search">Caută model:</label>
+            <input id="search" type="text" placeholder="Ex: A3, Q5, e-tron, RS..." />
+          </div>
+
+          <div>
+            <label class="note" for="category">Categorie:</label>
+            <select id="category">
+              <option value="ALL">Toate categoriile</option>
+            </select>
+          </div>
+        </div>
+
+        <p class="note" style="margin-top:10px;">
+          Tip: dacă adaugi poze în <code>images: [ ... ]</code> pentru un model, ele apar automat în slideshow-ul categoriei.
+        </p>
+      </div>
+
+      <!-- AICI SE GENEREAZĂ AUTOMAT SECȚIUNILE -->
+      <div id="sections"></div>
+
+      <div class="card" style="margin-top:14px;">
+        <h3>Observație</h3>
+        <p class="note">
+          Gama de modele poate diferi în funcție de an și piață. În cadrul acestui proiect contează organizarea,
+          navigarea și prezentarea clară a informațiilor.
+        </p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>Proiect realizat pentru atestat • <span data-year></span></p>
+    </div>
+  </footer>
+
+  <!-- DATELE MODELELOR -->
+  <script src="data/models.js"></script>
+  <!-- SLIDER + AN -->
+  <script src="js/script.js"></script>
+
+  <!-- GENERATOR GAMA -->
+  <script>
+    const MODELS = window.AUDI_MODELS || [];
+
+    const sectionsEl = document.getElementById("sections");
+    const searchEl = document.getElementById("search");
+    const categoryEl = document.getElementById("category");
+
+    // ordinea preferată a categoriilor (restul se pun după, alfabetic)
+    const ORDER = ["Seria A", "SUV", "Sport", "Electrice", "Istorice"];
+
+    function uniq(arr) {
+      return Array.from(new Set(arr));
+    }
+
+    function categorySort(a, b) {
+      const ia = ORDER.indexOf(a);
+      const ib = ORDER.indexOf(b);
+      if (ia === -1 && ib === -1) return a.localeCompare(b);
+      if (ia === -1) return 1;
+      if (ib === -1) return -1;
+      return ia - ib;
+    }
+
+    function buildCategoryOptions() {
+      const cats = uniq(MODELS.map(m => m.category || "Altele")).sort(categorySort);
+      cats.forEach(cat => {
+        const opt = document.createElement("option");
+        opt.value = cat;
+        opt.textContent = cat;
+        categoryEl.appendChild(opt);
+      });
+    }
+
+    function groupByCategory(models) {
+      const grouped = {};
+      models.forEach(m => {
+        const cat = m.category || "Altele";
+        if (!grouped[cat]) grouped[cat] = [];
+        grouped[cat].push(m);
+      });
+
+      // sortare alfabetică în fiecare categorie
+      Object.keys(grouped).forEach(cat => {
+        grouped[cat].sort((a, b) => (a.name || "").localeCompare(b.name || ""));
+      });
+
+      return grouped;
+    }
+
+    function render(models) {
+      sectionsEl.innerHTML = "";
+
+      if (!models.length) {
+        sectionsEl.innerHTML = `<div class="card"><p class="note">Nu există rezultate pentru filtrul curent.</p></div>`;
+        return;
+      }
+
+      const grouped = groupByCategory(models);
+      const categories = Object.keys(grouped).sort(categorySort);
+
+      categories.forEach(cat => {
+        const list = grouped[cat];
+
+        // ✅ TOATE IMAGINILE DIN CATEGORIE:
+        // pentru fiecare model: m.images (dacă există) altfel m.img
+        const slidesData = list.flatMap(m => {
+          const imgs = (m.images && m.images.length) ? m.images : [m.img];
+          return imgs.map(src => ({
+            src,
+            name: m.name,
+            id: m.id
+          }));
+        });
+
+        const section = document.createElement("section");
+        section.className = "section";
+        section.style.paddingLeft = "0";
+        section.style.paddingRight = "0";
+
+        section.innerHTML = `
+          <h2 class="section-title">${cat}</h2>
+
+          <div class="card" style="margin-bottom:14px;">
+            <h3>Galerie — ${cat}</h3>
+            <p class="note">Săgețile schimbă imaginile. Click pe imagine → pagina modelului.</p>
+
+            <div class="slider" data-autoplay="3200" aria-label="Slideshow ${cat}">
+              <div class="slides">
+             ${slidesData.map(s => `
+  <div class="slide">
+    <div class="img-wrap">
+      <a href="model.html?id=${encodeURIComponent(s.id)}">
+        <img src="${s.src}" alt="${s.name}" />
+      </a>
+    </div>
+    <div class="caption">${s.name}</div>
+  </div>
+`).join("")}
+
+              </div>
+
+              <button class="nav-btn prev" type="button" aria-label="Anterior">‹</button>
+              <button class="nav-btn next" type="button" aria-label="Următor">›</button>
+              <div class="dots" aria-label="Indicatori"></div>
+            </div>
+          </div>
+
+          <div class="grid-3">
+            ${list.map(m => `
+              <div class="model-card">
+                <h4>
+                  <a href="model.html?id=${encodeURIComponent(m.id)}" style="color:inherit; text-decoration:none;">
+                    ${m.name}
+                  </a>
+                </h4>
+
+                <p class="note" style="margin-bottom:10px;">
+                  ${m.desc || ""}
+                </p>
+
+                <div>
+                  <span class="tag">${m.family || "Audi"}</span>
+                  <span class="tag">${m.body || "Caroserie"}</span>
+                  <span class="tag">${m.fuel || "Motor"}</span>
+                </div>
+
+                <div class="btn-row" style="margin-top:10px;">
+                  <a class="btn secondary" href="model.html?id=${encodeURIComponent(m.id)}">Detalii</a>
+                </div>
+              </div>
+            `).join("")}
+          </div>
+        `;
+
+        sectionsEl.appendChild(section);
+      });
+
+      // re-inițializează slideshow-urile generate dinamic
+      if (typeof initSliders === "function") initSliders();
+    }
+
+    function applyFilters() {
+      const q = (searchEl.value || "").trim().toLowerCase();
+      const cat = categoryEl.value;
+
+      const filtered = MODELS.filter(m => {
+        const mName = (m.name || "").toLowerCase();
+        const mFam = (m.family || "").toLowerCase();
+        const mCat = (m.category || "").toLowerCase();
+
+        const okCat = (cat === "ALL") ? true : (m.category === cat);
+        const okQ = !q ? true : (mName.includes(q) || mFam.includes(q) || mCat.includes(q));
+
+        return okCat && okQ;
+      });
+
+      render(filtered);
+    }
+
+    // INIT
+    buildCategoryOptions();
+    render(MODELS);
+
+    searchEl.addEventListener("input", applyFilters);
+    categoryEl.addEventListener("change", applyFilters);
+  </script>
+
+</body>
+</html>

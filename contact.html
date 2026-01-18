@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Atestat</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- HEADER / MENIU -->
+  <header>
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <img src="img/logo.png" alt="Audi Logo" class="logo">
+
+        <span>AUDI • Gama completă</span>
+      </a>
+      <ul>
+        <li><a href="index.html">Acasă</a></li>
+        <li><a href="istorie.html">Istorie</a></li>
+        <li><a href="gama.html">Gama</a></li>
+        <li><a href="tehnologii.html">Tehnologii</a></li>
+        <li><a class="active" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- CONȚINUT -->
+  <main class="section">
+    <div class="container">
+
+      <h1 class="section-title">Contact</h1>
+      <p class="section-subtitle">
+        Această pagină permite utilizatorilor să trimită un mesaj în legătură cu proiectul.
+        Formularul este demonstrativ și nu trimite date reale.
+      </p>
+
+      <div class="grid-2">
+
+        <!-- DATE PROIECT -->
+        <div class="card">
+          <h3>Date proiect</h3>
+          <p class="note">
+            <strong>Elev:</strong> NUMELE TĂU<br>
+            <strong>Clasa:</strong> a XII-a<br>
+            <strong>Profesor coordonator:</strong> NUMELE PROFESORULUI<br>
+            <strong>Tema:</strong> Gama completă a autoturismelor Audi
+          </p>
+
+          <p class="note" style="margin-top:10px;">
+            Aceste date pot fi completate înainte de predarea proiectului.
+          </p>
+        </div>
+
+        <!-- FORMULAR -->
+        <div class="card">
+          <h3>Formular de contact</h3>
+
+          <form id="contactForm">
+            <label>
+              Nume
+              <input id="nume" type="text" placeholder="Ex: Popescu Andrei" required>
+            </label>
+
+            <label>
+              Email
+              <input type="email" placeholder="exemplu@email.com" required>
+            </label>
+
+            <label>
+              Subiect
+              <select required>
+                <option value="" disabled selected>Alege o opțiune</option>
+                <option>Întrebare despre modele</option>
+                <option>Întrebare despre tehnologii</option>
+                <option>Feedback pentru proiect</option>
+              </select>
+            </label>
+
+            <label>
+              Mesaj
+              <textarea placeholder="Scrie mesajul aici..." required></textarea>
+            </label>
+
+            <button class="btn" type="submit">Trimite</button>
+
+            <p class="note">
+              La trimitere apare un mesaj demonstrativ (JavaScript).
+            </p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>Proiect realizat pentru atestat • <span data-year></span></p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
