@@ -324,15 +324,24 @@ select option:checked {
 }
 
 /* link peste blur */
-.img-wrap a {
+.img-wrap{
   position: relative;
-  z-index: 3;
+  z-index: 2;
+  width: 100%;
+  height: clamp(220px, 35vw, 420px); /* IMPORTANT */
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* fallback: chiar dacă nu prinde img-wrap, imaginea tot nu devine uriașă */
+.slider img{
   width: 100%;
   height: 100%;
+  object-fit: contain;
+  display: block;
 }
+
 
 /* imaginea principală CLARĂ */
 .img-wrap img {
@@ -415,5 +424,6 @@ footer {
   margin-right: 10px;
   display: block;
 }
+
 
 
