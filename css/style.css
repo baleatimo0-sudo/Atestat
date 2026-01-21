@@ -19,6 +19,7 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+
 body::before {
   content: "";
   position: fixed;
@@ -26,7 +27,6 @@ body::before {
   background: rgba(10, 12, 18, 0.85);
   z-index: -1;
 }
-
 
 /* ===== Layout ===== */
 .container {
@@ -91,13 +91,10 @@ header {
   border-radius: 50%;
 }
 
-/* poziționare 4 inele */
 .rings .r1 { left: 0; }
 .rings .r2 { left: 24px; }
 .rings .r3 { left: 48px; }
 .rings .r4 { left: 72px; }
-
-
 
 .nav ul {
   display: flex;
@@ -254,108 +251,9 @@ textarea {
   resize: vertical;
 }
 
-/* ===== Slider ===== */
-.slider {
-  position: relative;
-  border-radius: 16px;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.10);
-}
-
-.slides {
-  display: flex;
-  transition: transform 400ms ease;
-}
-
-.slide {
-  min-width: 100%;
-}
-
-.slider img {
-  width: 100%;
-  height: 300px;
-  object-fit: contain;  
-  background-color: #000; 
-}
-
-
-.caption {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  background: rgba(0,0,0,0.5);
-  padding: 6px 10px;
-  border-radius: 10px;
-  font-size: 14px;
-}
-
-.nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.4);
-  border: 1px solid rgba(255,255,255,0.2);
-  color: #c81f1f;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.prev { left: 10px; }
-.next { right: 10px; }
-
-.dots {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 6px;
-}
-
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.4);
-}
-
-.dot.active {
-  background: #bb0505;
-}
-
-/* ===== Footer ===== */
-footer {
-  padding: 22px 0;
-  border-top: 1px solid rgba(255,255,255,0.08);
-  text-align: center;
-}
-
-/* ===== Responsive ===== */
-@media (max-width: 900px) {
-  .hero-grid { grid-template-columns: 1fr; }
-  .grid-2 { grid-template-columns: 1fr; }
-  .grid-3 { grid-template-columns: 1fr; }
-  .hero h1 { font-size: 32px; }
-}
-
-
-/* ===== Logo Audi (imagine) ===== */
-.logo {
-  height: 80px;
-  width: auto;
-  margin-right: 10px;
-  display: block;
-
-
-}
 /* ===== Select (dropdown categorii) ===== */
 select {
-  background-color: #1a1d24;
-  color: #e9eef7;
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 12px;
+  background-color: #1a1d24; /* diferit față de input/textarea */
 }
 
 /* opțiunile din dropdown */
@@ -370,7 +268,8 @@ select option:checked {
   background-color: #2a2f3a;
   color: #28c313;
 }
-/* ===== SLIDER CU FUNDAL BLURAT (GARANTAT) ===== */
+
+/* ===== Slider (varianta blurată - păstrată) ===== */
 .slider { 
   position: relative;
   border-radius: 16px;
@@ -404,7 +303,7 @@ select option:checked {
   z-index: 0;
 }
 
-/* overlay întunecat peste blur (stratul 2) - ca să arate premium */
+/* overlay întunecat peste blur (stratul 2) */
 .slide::after {
   content: "";
   position: absolute;
@@ -416,7 +315,7 @@ select option:checked {
 /* imaginea clară (stratul 3) */
 .img-wrap {
   position: relative;
-  z-index: 2;            /* PESTE ::before și ::after */
+  z-index: 2;
   width: 100%;
   height: 320px;
   display: flex;
@@ -424,7 +323,7 @@ select option:checked {
   justify-content: center;
 }
 
-/* IMPORTANT: și link-ul să fie peste blur */
+/* link peste blur */
 .img-wrap a {
   position: relative;
   z-index: 3;
@@ -440,8 +339,6 @@ select option:checked {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  filter: none !important;
-  opacity: 1 !important;
 }
 
 /* caption peste tot */
@@ -455,12 +352,68 @@ select option:checked {
   border-radius: 10px;
   font-size: 14px;
 }
-/* FIX: scoate orice efect de overlay/opacity/filter */
-.slider, .slider .slides, .slider .slide { opacity: 1 !important; }
-.slider img { opacity: 1 !important; filter: none !important; }
 
-.slider::before, .slider::after,
-.slider .slide::before, .slider .slide::after,
-.slider .slides::before, .slider .slides::after {
-  content: none !important;
+/* butoane slider (compatibil: nav-btn sau slider-btn) */
+.nav-btn,
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #c81f1f;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 5;
 }
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+.dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 5;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+}
+
+.dot.active {
+  background: #bb0505;
+}
+
+/* ===== Footer ===== */
+footer {
+  padding: 22px 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  text-align: center;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .grid-2 { grid-template-columns: 1fr; }
+  .grid-3 { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 32px; }
+}
+
+/* ===== Logo Audi (imagine) ===== */
+.logo {
+  height: 80px;
+  width: auto;
+  margin-right: 10px;
+  display: block;
+}
+
+
