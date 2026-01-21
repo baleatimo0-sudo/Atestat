@@ -343,6 +343,15 @@ select option:checked {
 }
 
 
+/* fallback: chiar dacă nu prinde img-wrap, imaginea tot nu devine uriașă */
+.slider img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+
 /* imaginea principală CLARĂ */
 .img-wrap img {
   max-width: 100%;
@@ -424,6 +433,7 @@ footer {
   margin-right: 10px;
   display: block;
 }
+
 
 
 
