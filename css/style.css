@@ -313,15 +313,24 @@ select option:checked {
 }
 
 /* imaginea clară (stratul 3) */
-.img-wrap {
+.img-wrap{
   position: relative;
   z-index: 2;
   width: 100%;
-  height: 320px;
+  height: clamp(220px, 35vw, 420px); /* IMPORTANT */
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
+/* fallback: chiar dacă nu prinde img-wrap, imaginea tot nu devine uriașă */
+.slider img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
 
 /* link peste blur */
 .img-wrap{
@@ -352,11 +361,32 @@ select option:checked {
 }
 
 
-/* imaginea principală CLARĂ */
-.img-wrap img {
-  max-width: 100%;
-  max-height: 100%;
+/* fallback: chiar dacă nu prinde img-wrap, imaginea tot nu devine uriașă */
+.slider img{
+  width: 100%;
+  height: 100%;
   object-fit: contain;
+  display: block;
+}
+
+
+/* imaginea principală CLARĂ */
+.img-wrap{
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: clamp(220px, 35vw, 420px); /* IMPORTANT */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* fallback: chiar dacă nu prinde img-wrap, imaginea tot nu devine uriașă */
+.slider img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 /* caption peste tot */
@@ -433,6 +463,7 @@ footer {
   margin-right: 10px;
   display: block;
 }
+
 
 
 
