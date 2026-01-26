@@ -393,7 +393,7 @@ window.AUDI_MODELS = [
   seats: "4–5",
   trunkL: "Variabil",
   img: "img/sport/rs.jpg",
-  images: ["img/sport/rs-1.jpg","img/sport/rs-2.jpg","img/sport/rs-3.jpg","img/sport/rs-4.jpg","img/sport/rs-5.jpg"]
+  images: ["img/sport/rs-1.jpg","img/sport/rs-2.jpg","img/sport/rs-3.jpg","img/sport/rs.jpg","img/sport/rs-5.jpg"]
 },
 
 {
@@ -760,6 +760,7 @@ window.AUDI_MODELS = [
 
 
 ];
+
 
 
 
