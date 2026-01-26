@@ -526,7 +526,7 @@ window.AUDI_MODELS = [
   seats: 5,
   trunkL: "520–550 L",
   img: "img/etron/q6-etron.jpg",
-  images: ["img/etron/q6-etron.jpg"]
+  images: ["img/etron/q6etron.jpg"]
 },
 
 {
@@ -760,5 +760,6 @@ window.AUDI_MODELS = [
 
 
 ];
+
 
 
