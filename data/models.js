@@ -630,7 +630,7 @@ window.AUDI_MODELS = [
   seats: 5,
   trunkL: "430 L",
   img: "img/istoric/audi80.jpg",
-  images: ["img/istoric/audi80.jpg"]
+  images: ["img/istoric/audi80.png"]
 },
 
 {
@@ -760,4 +760,5 @@ window.AUDI_MODELS = [
 
 
 ];
+
 
