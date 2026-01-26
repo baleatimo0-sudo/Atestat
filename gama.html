@@ -22,6 +22,7 @@
         <li><a href="istorie.html">Istorie</a></li>
         <li><a class="active" href="gama.html">Gama</a></li>
         <li><a href="tehnologii.html">Tehnologii</a></li>
+        <li><a href="finder.html">Finder</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
@@ -56,30 +57,19 @@
         </div>
 
         <p class="note" style="margin-top:10px;">
-          Tip: dacă adaugi poze în <code>images: [ ... ]</code> pentru un model, ele apar automat în slideshow-ul categoriei.
+          <code></code>
         </p>
       </div>
 
       <!-- AICI SE GENEREAZĂ AUTOMAT SECȚIUNILE -->
       <div id="sections"></div>
 
-      <div class="card" style="margin-top:14px;">
-        <h3>Observație</h3>
-        <p class="note">
-          Gama de modele poate diferi în funcție de an și piață. În cadrul acestui proiect contează organizarea,
-          navigarea și prezentarea clară a informațiilor.
-        </p>
-      </div>
+      
 
     </div>
   </main>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <p>Proiect realizat pentru atestat • <span data-year></span></p>
-    </div>
-  </footer>
+  
 
   <!-- DATELE MODELELOR -->
   <script src="data/models.js"></script>
@@ -171,7 +161,7 @@
 
           <div class="card" style="margin-bottom:14px;">
             <h3>Galerie — ${cat}</h3>
-            <p class="note">Săgețile schimbă imaginile. Click pe imagine → pagina modelului.</p>
+            <p class="note"></p>
 
             <div class="slider" data-autoplay="3200" aria-label="Slideshow ${cat}">
               <div class="slides">
@@ -195,29 +185,35 @@
           </div>
 
           <div class="grid-3">
-            ${list.map(m => `
-              <div class="model-card">
-                <h4>
-                  <a href="model.html?id=${encodeURIComponent(m.id)}" style="color:inherit; text-decoration:none;">
-                    ${m.name}
-                  </a>
-                </h4>
+          ${list.map(m => `
+  <div class="model-card">
 
-                <p class="note" style="margin-bottom:10px;">
-                  ${m.desc || ""}
-                </p>
+    <div class="hover-bg" style="background-image:url('${m.img}')"></div>
+    <div class="hover-overlay"></div>
 
-                <div>
-                  <span class="tag">${m.family || "Audi"}</span>
-                  <span class="tag">${m.body || "Caroserie"}</span>
-                  <span class="tag">${m.fuel || "Motor"}</span>
-                </div>
+    <h4>
+      <a href="model.html?id=${encodeURIComponent(m.id)}" style="color:inherit; text-decoration:none;">
+        ${m.name}
+      </a>
+    </h4>
 
-                <div class="btn-row" style="margin-top:10px;">
-                  <a class="btn secondary" href="model.html?id=${encodeURIComponent(m.id)}">Detalii</a>
-                </div>
-              </div>
-            `).join("")}
+    <p class="note" style="margin-bottom:10px;">
+      ${m.desc || ""}
+    </p>
+
+    <div>
+      <span class="tag">${m.family || "Audi"}</span>
+      <span class="tag">${m.body || "Caroserie"}</span>
+      <span class="tag">${m.fuel || "Motor"}</span>
+    </div>
+
+    <div class="btn-row" style="margin-top:10px;">
+      <a class="btn secondary" href="model.html?id=${encodeURIComponent(m.id)}">Detalii</a>
+    </div>
+  </div>
+`).join("")}
+
+
           </div>
         `;
 
