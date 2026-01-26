@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Audi Finder | Recomandări</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <div class="container nav">
+ <a class="brand" href="index.html">
+  <img src="img/logo.png" alt="Audi Logo" class="logo">
+  <span>AUDI • Gama completă</span>
+</a>
+
+
+      <ul>
+        <li><a href="index.html">Acasă</a></li>
+        <li><a href="istorie.html">Istorie</a></li>
+        <li><a class="active" href="gama.html">Gama</a></li>
+        <li><a href="tehnologii.html">Tehnologii</a></li>
+        <li><a href="finder.html">Finder</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <h1 class="section-title">Audi Finder</h1>
+      <p class="section-subtitle">
+        Răspunde la întrebări și primești recomandări de modele Audi din baza de date a proiectului (<strong>models.js</strong>).
+      </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Preferințele mele</h3>
+
+          <form id="finderForm">
+            <div>
+              <label class="note" for="use">Utilizare principală:</label>
+              <select id="use">
+                <option value="city">Oraș</option>
+                <option value="mixed">Mixt (oraș + drumuri)</option>
+                <option value="long">Drumuri lungi</option>
+                <option value="family">Familie (spațiu & confort)</option>
+                <option value="sport">Sport (performanță)</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="note" for="bodyPref">Preferință caroserie:</label>
+              <select id="bodyPref">
+                <option value="any">Oricare</option>
+                <option value="suv">SUV</option>
+                <option value="sedan">Sedan / Avant</option>
+                <option value="compact">Compact</option>
+                <option value="gt">GT / Sport</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="note" for="fuelPref">Propulsie:</label>
+              <select id="fuelPref">
+                <option value="any">Oricare</option>
+                <option value="electric">Electric (e-tron)</option>
+                <option value="nonElectric">Non-electric</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="note" for="quattro">Tracțiune:</label>
+              <select id="quattro">
+                <option value="any">Oricare</option>
+                <option value="quattro">Prefer quattro</option>
+                <option value="noQuattro">Nu contează quattro</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="note" for="space">Nevoie de spațiu:</label>
+              <select id="space">
+                <option value="low">Mică</option>
+                <option value="medium">Medie</option>
+                <option value="high">Mare</option>
+              </select>
+            </div>
+
+            <div class="btn-row">
+              <button class="btn" type="submit">Generează recomandări</button>
+              <button class="btn secondary" id="resetBtn" type="button">Reset</button>
+            </div>
+
+            
+          </form>
+        </div>
+
+        <div class="card">
+          <h3>Rezultate</h3>
+         <p class="note" id="hint"></p>
+
+          <div id="results"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+ 
+
+  <script src="data/models.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/finder.js"></script>
+</body>
+</html>
