@@ -21,6 +21,7 @@
         <li><a href="istorie.html">Istorie</a></li>
         <li><a class="active" href="gama.html">Gama</a></li>
         <li><a href="tehnologii.html">Tehnologii</a></li>
+        <li><a href="finder.html">Finder</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
@@ -61,43 +62,40 @@
 
         <!-- INFORMAȚII -->
         <div class="card">
-          <h3>Fișă tehnică (prezentare)</h3>
+  <h3>Fișă tehnică</h3>
 
-          <table>
-            <tbody>
-              <tr>
-                <th>Familie</th>
-                <td id="modelFamily">-</td>
-              </tr>
-              <tr>
-                <th>Categorie</th>
-                <td id="modelCategory">-</td>
-              </tr>
-              <tr>
-                <th>Caroserie</th>
-                <td id="modelBody">-</td>
-              </tr>
-              <tr>
-                <th>Propulsie</th>
-                <td id="modelFuel">-</td>
-              </tr>
-              <tr>
-                <th>Tracțiune</th>
-                <td id="modelDrive">-</td>
-              </tr>
-              <tr>
-                <th>Avantaje</th>
-                <td id="modelHighlights">-</td>
-              </tr>
-            </tbody>
-          </table>
+  <table class="specs">
+    <tbody>
+      <tr><th>Familie</th><td id="modelFamily">—</td></tr>
+      <tr><th>Categorie</th><td id="modelCategory">—</td></tr>
+      <tr><th>Caroserie</th><td id="modelBody">—</td></tr>
+      <tr><th>Propulsie</th><td id="modelFuel">—</td></tr>
+      <tr><th>Tracțiune</th><td id="modelDrive">—</td></tr>
 
-          <p class="note" style="margin-top:10px;">
-            !!!!!!Datele sunt orientative!!!!!!
-          </p>
-        </div>
+      <tr><th>Putere</th><td id="modelPower">—</td></tr>
+      <tr><th>0–100 km/h</th><td id="modelAccel">—</td></tr>
+      <tr><th>Viteză maximă</th><td id="modelTop">—</td></tr>
+      <tr><th>Consum</th><td id="modelCons">—</td></tr>
+      <tr><th>Emisii CO₂</th><td id="modelCo2">—</td></tr>
+      <tr><th>Autonomie</th><td id="modelRange">—</td></tr>
 
-      </div>
+      <tr><th>Locuri</th><td id="modelSeats">—</td></tr>
+      <tr><th>Portbagaj</th><td id="modelTrunk">—</td></tr>
+
+      <tr>
+        <th>Avantaje</th>
+        <td>
+          <ul id="modelPros" style="margin:0; padding-left:18px; opacity:0.95;"></ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="note" style="margin-top:10px;">
+    !!!Datele sunt orientative!!!
+  </h2>
+</div>
+
 
       <div class="card" style="margin-top:14px;">
         <h3>Observație</h3>
@@ -110,12 +108,8 @@
     </div>
   </main>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <p>Proiect realizat pentru atestat • <span data-year></span></p>
-    </div>
-  </footer>
+
+ 
 
   <!-- DATE MODELE -->
   <script src="data/models.js"></script>
@@ -166,6 +160,10 @@
       if (typeof initSliders === "function") initSliders();
     }
   </script>
+  
+<script src="data/models.js"></script>
+<script src="js/script.js"></script>
+<script src="js/model.js"></script>
 
 </body>
 </html>
