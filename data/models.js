@@ -604,7 +604,7 @@ window.AUDI_MODELS = [
   seats: 5,
   trunkL: "500+ L",
   img: "img/etron/a6-etron.jpg",
-  images: ["img/etron/a6-etron.jpg"]
+  images: ["img/etron/a6etron.jpg"]
 },
 
 /* ================= ISTORICE ================= */
@@ -760,3 +760,4 @@ window.AUDI_MODELS = [
 
 
 ];
+
